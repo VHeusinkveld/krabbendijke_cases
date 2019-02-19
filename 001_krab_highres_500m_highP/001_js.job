@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --ntasks=24
+#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=24
+#SBATCH --partition inf
+#SBATCH --time=100000
+#SBATCH --mem=20G
+#SBATCH --job-name 001_krabbendijke
+#SBATCH --output results/%x.o%j
+#SBATCH --error results/%x.e%j
+
+OMP_NUM_THREADS=24 ./main001
