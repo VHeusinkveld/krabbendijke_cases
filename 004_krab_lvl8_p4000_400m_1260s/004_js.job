@@ -5,8 +5,8 @@
 #SBATCH --partition inf
 #SBATCH --time=100000
 #SBATCH --mem=20G
-#SBATCH --job-name 003_krabbendijke
+#SBATCH --job-name 004_krabbendijke
 #SBATCH --output results/%x.o%j
 #SBATCH --error results/%x.e%j
 
-OMP_NUM_THREADS=16 ./main003
+OMP_NUM_THREADS=16 ./main004
