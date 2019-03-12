@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --ntasks=18
+#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=18
+#SBATCH --partition inf 
+#SBATCH --time=100000
+#SBATCH --mem=20G
+#SBATCH --job-name 028_REAL000
+#SBATCH --output results/%x.o%j
+#SBATCH --error results/%x.e%j
+
+OMP_NUM_THREADS=18 ./main028
