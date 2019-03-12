@@ -266,7 +266,7 @@ event refvelocity(t+=1) {
     double vels1[ntot];	
 
     double xf0 = 0;
-    double yf0 = 3;
+    double yf0 = rot.y0-7;
     double zf0 = L0/2;
 
     for(int n; n < ntot; n++) {
@@ -304,7 +304,7 @@ event dts_meas(t += 1) {
 	    double dist = lengthhor*n/ntothor;
 
 	    double xx = xf0; 
-	    double yy = 1.; 
+	    double yy = rot.y0-9.; 
 	    double zz = dist; 
        
 	    double valb = interpolate(b, xx, yy, zz);
@@ -371,16 +371,16 @@ event movies(t += out.dtVisual) {
     
     translate(-rot.x0,-rot.y0,-rot.z0) {
         box(notics=false);
-        isosurface("l2", v=-0.02, color="b", min=STRAT(roughY0h), max=STRAT(2.*rot.y0));
+        isosurface("l2", v=-0.02, color="b", min=STRAT(0), max=STRAT(L0));
 	draw_vof("fan", fc = {1,0,0});
     }
     translate(-rot.z0,-rot.y0, -L0){
-      	squares("u.x", n = {0,0,1}, alpha=rot.z0, min=-fabs(WIND(1.5*rot.y0)), max=fabs(WIND(1.5*rot.y0)));
+      	squares("u.x", n = {0,0,1}, alpha=rot.z0, min=-fabs(WIND(rot.y0)), max=fabs(WIND(rot.y0)));
         cells(n = {0,0,1}, alpha = rot.z0);
     }
     
     translate(0.,-rot.y0,-rot.z0){
-        squares("u.x", n = {1,0,0}, alpha=rot.x0, min=-fabs(WIND(1.5*rot.y0)), max=fabs(WIND(1.5*rot.y0)));
+        squares("u.x", n = {1,0,0}, alpha=rot.x0, min=-fabs(WIND(rot.y0)), max=fabs(WIND(rot.y0)));
     }
 
     /** Save file with certain fps*/
@@ -393,16 +393,16 @@ event movies(t += out.dtVisual) {
     
     translate(-rot.x0,-rot.y0,-rot.z0) {
         box(notics=false);
-        isosurface("l2", v=-0.02, color="b", min=STRAT(0.), max=STRAT(1.5*rot.y0));
+        isosurface("l2", v=-0.02, color="b", min=STRAT(0.), max=STRAT(L0));
 	draw_vof("fan", fc = {1,0,0});
     }
     translate(-rot.z0,-rot.y0, -L0){
-      	squares("b", n = {0,0,1}, alpha=rot.z0, min=STRAT(0.), max=STRAT(1.5*rot.y0));
+      	squares("b", n = {0,0,1}, alpha=rot.z0, min=STRAT(0.), max=STRAT(L0));
         cells(n = {0,0,1}, alpha = rot.z0);
     }
     
     translate(0.,-rot.y0,-rot.z0){
-        squares("b", n = {1,0,0}, alpha=rot.x0, min=STRAT(0.), max=STRAT(1.5*rot.y0));
+        squares("b", n = {1,0,0}, alpha=rot.x0, min=STRAT(0.), max=STRAT(L0));
     }
 
     /** Save file with certain fps*/
@@ -418,8 +418,8 @@ event slices(t=out.dtSlices; t+=out.dtSlices) {
     coord slice = {1., 0., 1.};
     int res = L0/2;
 
-    for(double yTemp = 0.5; yTemp<=1; yTemp+=0.5) {
-	slice.y = yTemp/L0;
+    for(double yTemp = 6; yTemp<=13; yTemp+=2.) {
+	slice.y = (rot.y0 - yTemp)/L0;
    
     	snprintf(nameSlice, 90, "%st=%05gy=%03g", out.dir_slices, t, yTemp);
     	FILE * fpsli = fopen(nameSlice, "w");
@@ -427,8 +427,8 @@ event slices(t=out.dtSlices; t+=out.dtSlices) {
     	fclose(fpsli);
     }
 
-    for(double yTemp = 2; yTemp<=4.; yTemp+=2.) {
-	slice.y = yTemp/L0;
+    for(double yTemp = 0; yTemp<=1.; yTemp+=2.) {
+	slice.y = (rot.y0 - yTemp)/L0;
    
     	snprintf(nameSlice, 90, "%st=%05gy=%03g", out.dir_slices, t, yTemp);
     	FILE * fpsli = fopen(nameSlice, "w");

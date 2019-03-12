@@ -35,7 +35,7 @@ void init_rotor() {
     if(!rot.stop)
     	rot.stop = 1E10;
     if(!rot.rampT)
-    	rot.rampT = 30.;
+    	rot.rampT = 10;
     if(!rot.R)
 	rot.R = 2.;     
     if(!rot.W)
@@ -45,7 +45,7 @@ void init_rotor() {
     if(!rot.x0)
     	rot.x0 = L0/2.;
     if(!rot.y0)
-	rot.y0 = 10.;
+	rot.y0 = L0/2.;
     if(!rot.z0){
         #if dimension == 2
             rot.z0 = 0.;
