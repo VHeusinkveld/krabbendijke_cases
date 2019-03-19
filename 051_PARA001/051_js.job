@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --ntasks=16
+#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=16
+#SBATCH --partition small 
+#SBATCH --time=100000
+#SBATCH --mem=20G
+#SBATCH --job-name 051_PARA001
+#SBATCH --output results/%x.o%j
+#SBATCH --error results/%x.e%j
+
+OMP_NUM_THREADS=16 ./main051
