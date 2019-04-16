@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --ntasks=32
+#SBATCH --ntasks=16
 #SBATCH --cpus-per-task=1
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks-per-node=16
 #SBATCH --partition inf 
 #SBATCH --time=100000
 #SBATCH --mem=20G
-#SBATCH --job-name 062_PARA998
+#SBATCH --job-name 064_PARA996
 #SBATCH --output results/%x.o%j
 #SBATCH --error results/%x.e%j
 
-OMP_NUM_THREADS=32 ./main062
+OMP_NUM_THREADS=16 ./main064

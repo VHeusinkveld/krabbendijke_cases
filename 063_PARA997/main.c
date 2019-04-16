@@ -16,7 +16,7 @@ double meps, eps;			// Maximum error and error in u fields
 double TEND = 1320.;
 
 char sim_ID[] = "krab";		        // Simulation identifier
-char sim_var[] = "maxlevel";  		// Notes if a variable is varied over runs
+char sim_var[] = "eps";  		// Notes if a variable is varied over runs
 
 #include "physics.h"			// Physics of the simulation 
 #include "fan.h"			// Include a fan
@@ -25,13 +25,13 @@ char sim_var[] = "maxlevel";  		// Notes if a variable is varied over runs
 /** Initialisation */
 int main() {	
     minlevel = 4;
-    //maxlevel = 9;
+    maxlevel = 9;
 
     L0 = 700.;
     X0 = Y0 = Z0 = 0.;
 
     // Possibility to run for variable changes
-    for(maxlevel=7; maxlevel <= 10; maxlevel = maxlevel + 1) {
+    for(eps = 2; eps > 0.1; eps = eps/2.) {
 	
 	//rot.theta = tempVar*M_PI/180;
 	//rot.phit = 2*M_PI/tempVar;
@@ -69,7 +69,7 @@ event init(t=0) {
     rot.stop = 1020.;
 
     rot.phi = 0;		// Reset for different runs
-    eps = .5;
+    //eps = .5;
     
     init_physics();
 
